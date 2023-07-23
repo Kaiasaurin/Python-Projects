@@ -67,7 +67,7 @@ def get_weather():
             current_time_str = current_time.strftime("%Y-%m-%d %H:%M:%S")
 
             weather_icon_file = get_weather_emoji(data['weather'][0]['main'])
-            weather_icon_path = os.path.join('C:\\Users\\Kaias\\Desktop\\Icons', weather_icon_file + '.png')
+            weather_icon_path = os.path.join('C:\\Users\\NAME\\Desktop\\Icons', weather_icon_file + '.png')
 
             download_weather_icon(weather_icon_path)
 
