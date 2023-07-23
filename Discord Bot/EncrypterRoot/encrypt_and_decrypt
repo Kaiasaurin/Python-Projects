@@ -1,0 +1,43 @@
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+import base64
+import pyperclip
+
+def encrypt_with_private_key(private_key_path, plaintext):
+    with open(private_key_path, 'rb') as f:
+        private_key = RSA.import_key(f.read())
+        cipher = PKCS1_OAEP.new(private_key)
+        encrypted_data = cipher.encrypt(plaintext.encode('utf-8'))
+
+    # Encode the encrypted data with Base64 for easy transmission or storage
+    encoded_data = base64.b64encode(encrypted_data)
+    return encoded_data.decode('utf-8')
+
+def decrypt_with_private_key(private_key_path, encrypted_data):
+    with open(private_key_path, 'rb') as f:
+        private_key = RSA.import_key(f.read())
+        cipher = PKCS1_OAEP.new(private_key)
+        decrypted_data = cipher.decrypt(base64.b64decode(encrypted_data))
+        return decrypted_data.decode('utf-8')
+
+# Path to the keys file CHANGE THIS TO YOURS
+private_key_path = 'C:/Users/NAME/Downloads/testing code/python/private_key.pem'
+public_key_path = 'C:/Users/NAME/Downloads/testing code/python/public_key.pem'
+
+
+action = input("Do you want to encrypt or decrypt the data? (1. encrypt/2. decrypt): ")
+
+if action.lower() == "1":
+    plaintext = input("Enter the text to encrypt: ")
+    encrypted_data = encrypt_with_private_key(private_key_path, plaintext)
+    print("Encrypted data:", encrypted_data)
+    pyperclip.copy(encrypted_data)
+    print("Encrypted data copied to clipboard.")
+elif action.lower() == "2":
+    encrypted_data = input("Enter the encrypted data: ")
+    decrypted_data = decrypt_with_private_key(private_key_path, encrypted_data)
+    print("Decrypted data:", decrypted_data)
+    pyperclip.copy(decrypted_data)
+    print("Decrypted data copied to clipboard.")
+else:
+    print("Invalid action. Please choose either 'encrypt' or 'decrypt'.")
