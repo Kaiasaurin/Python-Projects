@@ -2,27 +2,19 @@
 <html>
 <head>
     <title>Current Time</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-size: 2em;
-            background-color: #363636; /* Background Color */
-            color: #dddddd;  /* Adjusted color here */
-        }
-    </style>
+    
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
     <script>
-      function fetchTime(){  
-        $.get("/time", function(data){
-          $("#time").html(data);  
-        });
-      }
+        function fetchTime() {  
+            $.get("/time", function(data){
+                $("#time").html(data);  
+            });
+        }
 
-      // Fetch the time every second
-      setInterval(fetchTime, 1000);
+        // Fetch the time every second
+        setInterval(fetchTime, 1000);
     </script>
 </head>
 <body>
