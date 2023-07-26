@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2em;
+    background-color: #363636; /* Background Color */
+    color: #dddddd;  /* Adjusted color here */
+}
